@@ -886,7 +886,8 @@ $string['format_help'] = 'The course format determines the layout of the course 
 * Single activity format - For displaying a single activity or resource (such as a Quiz or SCORM package) on the course page
 * Social format - A forum is displayed on the course page
 * Topics format - The course page is organised into topic sections
-* Weekly format - The course page is organised into weekly sections, with the first week starting on the course start date';
+* Weekly format - The course page is organised into weekly sections, with the first week starting on the course start date
+* Workflow format - The course page is organised into steps to elaborate a project';
 $string['formathtml'] = 'HTML format';
 $string['formatmarkdown'] = 'Markdown format';
 $string['formatplain'] = 'Plain text format';
@@ -2024,6 +2025,8 @@ $string['summaryof'] = 'Summary of {$a}';
 $string['supplyinfo'] = 'More details';
 $string['suspended'] = 'Suspended';
 $string['suspendedusers'] = 'Suspended users';
+$string['studentidea'] = 'Student proposal';
+$string['studentidea_help'] = 'Students can propose their own project ideas if the ones provided by teacher are not enough.';
 $string['switchdevicedefault'] = 'Switch to the standard theme';
 $string['switchdevicerecommended'] = 'Switch to the recommended theme for your device';
 $string['switchrolereturn'] = 'Return to my normal role';
@@ -2108,6 +2111,10 @@ $string['topic'] = 'Topic';
 $string['topicoutline'] = 'Topic outline';
 $string['topicshow'] = 'Show this topic to {$a}';
 $string['topichide'] = 'Hide this topic from {$a}';
+$string['step'] = 'Step';
+$string['stepoutline'] = 'Step outline';
+$string['stepshow'] = 'Show this step to {$a}';
+$string['stephide'] = 'Hide this step from {$a}';
 $string['total'] = 'Total';
 $string['totopofsection'] = 'To the top of section "{$a}"';
 $string['trackforums'] = 'Forum tracking';
