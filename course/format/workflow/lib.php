@@ -63,24 +63,36 @@ class format_workflow extends format_base {
     }
 
     /**
-     * Returns the default section name for the workflow course format.
-     *
-     * If the section number is 0, it will use the string with key = section0name from the course format's lang file.
-     * If the section number is not 0, the base implementation of format_base::get_default_section_name which uses
-     * the string with the key = 'sectionname' from the course format's lang file + the section number will be used.
-     *
+     * Course format workflow uses 4 sections:
+     * - Project idea
+     * - Project meetings
+     * - Project upload
+     * - Project presentation
      * @param stdClass $section Section object from database or just field course_sections section
-     * @return string The default value for the section name.
+     * @return string The according name for each section.
      */
     public function get_default_section_name($section) {
-        if ($section->section == 0) {
-            // Return the general section.
-            return get_string('section0name', 'format_workflow');
+        if (is_object($section)) {
+            $sectionnum = $section->section;
         } else {
-            // Use format_base::get_default_section_name implementation which
-            // will display the section name in "Topic n" format.
-            return parent::get_default_section_name($section);
+            $sectionnum = $section;
         }
+
+        $sectionname = '';
+        switch($sectionnum) {
+            case 0: $sectionname = get_string('section0name', 'format_workflow');
+            break;
+            case 1 : $sectionname = get_string('projectidea','format_workflow');
+            break;
+            case 2 : $sectionname = get_string('projectmeetings','format_workflow');
+            break;
+            case 3 : $sectionname = get_string('projectupload','format_workflow');
+            break;
+            case 4 : $sectionname = get_string('projectpresentation','format_workflow');
+            break;
+        }
+
+        return $sectionname;
     }
 
     /**
@@ -214,14 +226,6 @@ class format_workflow extends format_base {
                 'studentidea' => array(
                     'default' => 1,
                     'type' => PARAM_INT,
-                ),
-                'coursedisplay' => array(
-                    'default' => COURSE_DISPLAY_SINGLEPAGE,
-                    'type' => PARAM_INT
-                ),
-                'hiddensections' => array(
-                    'default' => 0,
-                    'type' => PARAM_INT
                 )
             );
         }

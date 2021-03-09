@@ -31,10 +31,13 @@ $string['deletesection'] = 'Delete step';
 $string['newsectionname'] = 'New name for step {$a}';
 $string['sectionname'] = 'Step';
 $string['pluginname'] = 'Workflow format';
-$string['section0name'] = 'About';
+$string['section0name'] = 'General';
 $string['page-course-view-steps'] = 'Any course main page in workflow format';
 $string['page-course-view-steps-x'] = 'Any course page in workflow format';
 $string['hidefromothers'] = 'Hide step';
 $string['showfromothers'] = 'Show step';
 $string['privacy:metadata'] = 'The Workflow format plugin does not store any personal data.';
-
+$string['projectidea'] = 'Project idea';
+$string['projectmeetings'] = 'Project meetings';
+$string['projectupload'] = 'Project upload';
+$string['projectpresentation'] = 'Project presentation';

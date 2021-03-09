@@ -39,20 +39,23 @@ if ($step = optional_param('topic', 0, PARAM_INT)) {
 $context = context_course::instance($course->id);
 // Retrieve course format option fields and add them to the $course object.
 $course = course_get_format($course)->get_course();
+$course->coursedisplay = COURSE_DISPLAY_SINGLEPAGE;
+$course->hiddensections = 0;
 
 if (($marker >=0) && has_capability('moodle/course:setcurrentsection', $context) && confirm_sesskey()) {
     $course->marker = $marker;
     course_set_marker($course->id, $marker);
 }
 
-// Make sure section 0 is created.
-course_create_sections_if_missing($course, 0);
+// Make sure all needed sections in format_workflow are created
+$sectionnum = 5;
+for($index = 0; $index < $sectionnum; $index++){
+    course_create_sections_if_missing($course, $index);
+}
 
 $renderer = $PAGE->get_renderer('format_workflow');
 
-if (!empty($displaysection)) {
-    $renderer->print_single_section_page($course, null, null, null, null, $displaysection);
-} else {
+if (empty($displaysection)) {
     $renderer->print_multiple_section_page($course, null, null, null, null);
 }
 
