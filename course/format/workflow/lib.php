@@ -301,7 +301,7 @@ class format_workflow extends format_base {
      * @return bool
      */
     public function can_delete_section($section) {
-        return true;
+        return false;
     }
 
     /**
@@ -332,7 +332,7 @@ class format_workflow extends format_base {
      * @return bool
      */
     public function supports_news() {
-        return true;
+        return false;
     }
 
     /**
