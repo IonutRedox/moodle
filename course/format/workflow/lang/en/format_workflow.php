@@ -23,12 +23,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['addsections'] = 'Add step';
 $string['currentsection'] = 'This step';
 $string['editsection'] = 'Edit step';
-$string['editsectionname'] = 'Edit step name';
-$string['deletesection'] = 'Delete step';
-$string['newsectionname'] = 'New name for step {$a}';
 $string['sectionname'] = 'Step';
 $string['pluginname'] = 'Workflow format';
 $string['section0name'] = 'General';

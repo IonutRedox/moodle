@@ -159,4 +159,62 @@ class format_workflow_renderer extends format_section_renderer_base {
     protected function change_number_sections($course, $sectionreturn = null) {
         return null;
     }
+
+      /**
+     * Output the html for a multiple section page
+     *
+     * @param stdClass $course The course entry from DB
+     * @param array $sections (argument not used)
+     * @param array $mods (argument not used)
+     * @param array $modnames (argument not used)
+     * @param array $modnamesused (argument not used)
+     */
+    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
+        $modinfo = get_fast_modinfo($course);
+        $course = course_get_format($course)->get_course();
+
+        $context = context_course::instance($course->id);
+        // Title with completion help icon.
+        $completioninfo = new completion_info($course);
+        echo $completioninfo->display_help_icon();
+        echo $this->output->heading($this->page_title(), 2, 'accesshide');
+
+        // Copy activity clipboard..
+        echo $this->course_activity_clipboard($course, 0);
+
+        // Now the list of sections..
+        echo $this->start_section_list();
+        $numsections = course_get_format($course)->get_last_section_number();
+
+        foreach ($modinfo->get_section_info_all() as $section => $thissection) {
+            if ($section == 0) {
+                continue;
+            }
+            
+            if ($section > $numsections) {
+                // activities inside this section are 'orphaned', this section will be printed as 'stealth' below
+                continue;
+            }
+            // Show the section if the user is permitted to access it, OR if it's not available
+            // but there is some available info text which explains the reason & should display,
+            // OR it is hidden but the course has a setting to display hidden sections as unavilable.
+            $showsection = $thissection->uservisible ||
+                          ($thissection->visible &&
+                          !$thissection->available &&
+                          !empty($thissection->availableinfo)) ||
+                          (!$thissection->visible && !$course->hiddensections);
+                          
+            if (!$showsection) {
+                continue;
+            }
+
+            echo $this->section_header($thissection, $course, false, 0);
+            if ($thissection->uservisible) {
+                echo $this->courserenderer->course_section_cm_list($course, $thissection, 0);
+            }
+            echo $this->section_footer();    
+        }
+
+        echo $this->end_section_list();
+    }
 }

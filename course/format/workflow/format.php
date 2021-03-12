@@ -59,5 +59,3 @@ if (empty($displaysection)) {
     $renderer->print_multiple_section_page($course, null, null, null, null);
 }
 
-// Include course format js module
-$PAGE->requires->js('/course/format/workflow/format.js');
