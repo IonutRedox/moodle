@@ -148,4 +148,15 @@ class format_workflow_renderer extends format_section_renderer_base {
             return array_merge($controls, $parentcontrols);
         }
     }
+    
+   /**
+     * Disabled changing number of sections as the workflow consists of just 4 steps.
+     *
+     * @param stdClass $course
+     * @param int|null $sectionreturn
+     * @return string
+     */
+    protected function change_number_sections($course, $sectionreturn = null) {
+        return null;
+    }
 }
